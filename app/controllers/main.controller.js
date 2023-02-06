@@ -2,6 +2,6 @@ module.exports = {
 
 	// show the home page
 	showHome: (req, res) => {
-		res.send('Hello, I am the Home')
+		res.send('Hello, I am the App')
 	}
 }
