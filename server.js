@@ -6,7 +6,7 @@ const express = require('express'),
 
 // configure our application
 // tell express where to look for static assets
-app.use(express.static(__dirname, '/public'))
+app.use(express.static(__dirname + '/public'))
 
 // set ejs as out templating engine
 app.set('view engine', 'ejs')
