@@ -3,6 +3,7 @@ const express = require('express'),
 	app = express(),
 	port = process.env.PORT || 8080,
 	expressLayouts = require('express-ejs-layouts')
+	mongoose = require('mongoose')
 
 // configure our application
 // tell express where to look for static assets
@@ -11,6 +12,9 @@ app.use(express.static(__dirname + '/public'))
 // set ejs as out templating engine
 app.set('view engine', 'ejs')
 app.use(expressLayouts)
+
+// connect to database
+
 
 // set the routes	
 app.use(require('./app/routes'))
