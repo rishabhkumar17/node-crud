@@ -1,4 +1,4 @@
- // grab our dependencies
+// grab our dependencies
 const express = require('express'),
 	app = express(),
 	port = process.env.PORT || 8080,
@@ -6,7 +6,7 @@ const express = require('express'),
 	mongoose = require('mongoose')
 	dotenv = require('dotenv')
 
-// config environment variable
+ // config environment variable
 dotenv.config()
 
 // configure our application
