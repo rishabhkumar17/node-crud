@@ -11,8 +11,18 @@ const eventSchema = new Schema({
 	description: String
 })
 
+// middleware
+eventSchema.pre('save', function(next) {
+	this.slug = slugify(this.name)
+	next()
+})
+
 // create the model
 const eventModel = mongoose.model('Event', eventSchema)
 
 // export the model
 module.exports = eventModel
+
+function slugify(text) {
+	return 
+}
