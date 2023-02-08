@@ -23,6 +23,12 @@ const eventModel = mongoose.model('Event', eventSchema)
 // export the model
 module.exports = eventModel
 
+// function to slugify a name
 function slugify(text) {
-	return 
+	return text.toString().toLowerCase()
+		.replace(/\s+/g, '-')  		// replace spaces with -
+		.replace(/[^\w\-]+/g, '')	// remove all non-word chars
+		.replace(/\-\-+/g, '-')		// replace multiple - with single -
+		.replace(/^-+/, '')		// trim - frim start of text
+		.replace(/-+$/, '')		// trim - from end of text
 }
