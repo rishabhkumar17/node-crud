@@ -1,25 +1,28 @@
 const Event = require('../models/event')
 
 module.exports = {
-
+	showEvents: showEvents,
+	showSingle: showSingle,
+	seedEvents: seedEvents
+}
 	// show all events
-	showEvents: (req, res) => {
+const showEvents = (req, res) => {
 		//create dummy events
 		
 		//return a view with data
 		res.render('pages/events', {events: events})
-	},
+	};
 
 	// show a single event
-	showSingle: (req, res) => {
+const showSingle = (req, res) => {
 		// get a single event
 		const event = { name: 'Basketball', slug: 'basketball', description: 'Throwing into a basket.'}
 		
 		res.render('pages/single', { event: event})
-	},
+	};
 
 	// seed our databasse 
-	seedEvents: (req, res) => {
+const seedEvents = (req, res) => {
 		// create some events 
 		const events = [
 			{ name: 'Basketball', slug: 'basketball', description: 'Throwing into a basket.'},
@@ -39,4 +42,3 @@ module.exports = {
 		// seeded
 		res.send('Database seeded!')
 	}
-}
