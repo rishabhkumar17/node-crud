@@ -59,8 +59,21 @@ const seedEvents = (req, res) => {
     res.send('Database seeded!')
 }
 
+// show the create form
+const showCreate = (req, res) => {
+	res.render('pages/create')
+}
+
+
+// process the creation form
+const processCreate = (req, res) => {
+	
+}
+
 module.exports = {
-    showEvents: showEvents,
-    showSingle: showSingle,
-    seedEvents: seedEvents
+    showEvents,
+    showSingle,
+    seedEvents,
+    showCreate,
+    processCreate
 }

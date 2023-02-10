@@ -5,6 +5,7 @@ const express = require('express'),
 	expressLayouts = require('express-ejs-layouts')
 	mongoose = require('mongoose')
 	dotenv = require('dotenv')
+	bodyParser = require('body-parser')
 
  // config environment variable
 dotenv.config()
@@ -23,6 +24,9 @@ mongoose.connect(
 	process.env.DB_CONNECT, 
 	() => console.log('Connected to DB')
 )
+
+// use body parser to grab info from a form
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // set the routes	
 app.use(require('./app/routes'))
