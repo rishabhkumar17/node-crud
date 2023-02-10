@@ -67,7 +67,19 @@ const showCreate = (req, res) => {
 
 // process the creation form
 const processCreate = (req, res) => {
-	
+	// create a new event
+	const event = new Event({
+		name: req.body.name,
+		description: req.body.description
+	})
+	event.save((err) => {
+		if(err) {
+			throw err
+		}
+
+		// redirect to newly created event
+		res.redirect(`/events/${event.slug}`)
+	})
 }
 
 module.exports = {
