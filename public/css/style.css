@@ -27,3 +27,13 @@ body {
 .navbar-brand:hover {
 	color: #999;
 }
+
+.options {
+	color: white;
+	padding: 10px;
+}
+
+.options:hover {
+	color: #999;
+	text-decoration: none;
+}
