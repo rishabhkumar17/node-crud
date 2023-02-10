@@ -12,6 +12,12 @@ router.get('/', mainController.showHome)
 
 // event routes
 router.get('/events', eventsController.showEvents)
-router.get('/events/:slug', eventsController.showSingle)
 
-//create
+// seed events
+router.get('/events/seed', eventsController.seedEvents)
+
+
+
+
+// show a single event
+router.get('/events/:slug', eventsController.showSingle)
