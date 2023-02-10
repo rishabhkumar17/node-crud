@@ -25,13 +25,17 @@ module.exports = {
 			{ name: 'Basketball', slug: 'basketball', description: 'Throwing into a basket.'},
 			{ name: 'Swimming', slug: 'swimming', description: 'Michael Phelps is the fast fish.'},
 			{ name: 'Weightlifting', slug: 'weightlifting', description: 'Lifting heavy things up.'},
+			{name: 'Ping Pong', slug: 'pingpong', description: 'Super fast paddles'},
 		]
 
 		// use the event model to insert/save
-		for(event of events) {
+		Event.remove({}, () => {
+			for(event of events) {
 			var newEvent = new Event(event)
 			newEvent.save()
-		}
+			}	
+		})
+		
 		// seeded
 		res.send('Database seeded!')
 	}
