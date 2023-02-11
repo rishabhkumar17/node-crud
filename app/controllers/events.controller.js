@@ -20,7 +20,8 @@ const showSingle = (req, res) => {
     	if(err) {
     		res.status(404).send('Event not found!')
     	}
-    	res.render('pages/single', { event: event })
+    	res.render('pages/single', 
+            { event: event, success: req.flash('success') })
     })
 
     
@@ -76,6 +77,9 @@ const processCreate = (req, res) => {
 		if(err) {
 			throw err
 		}
+
+        // set a successful flash message
+        req.flash('success', 'Successfuly created event!')
 
 		// redirect to newly created event
 		res.redirect(`/events/${event.slug}`)
