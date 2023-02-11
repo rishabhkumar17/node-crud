@@ -9,6 +9,7 @@ const express = require('express'),
 	session = require('express-session')
 	cookieParser = require('cookie-parser')
 	flash = require('connect-flash')
+	expressValidator = require("express-validator")
 
  // config environment variable
 dotenv.config()
@@ -40,6 +41,8 @@ mongoose.connect(
 
 // use body parser to grab info from a form
 app.use(bodyParser.urlencoded({ extended: true }))
+//express validator
+app.use(expressValidator())
 
 // set the routes	
 app.use(require('./app/routes'))

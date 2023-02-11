@@ -62,12 +62,24 @@ const seedEvents = (req, res) => {
 
 // show the create form
 const showCreate = (req, res) => {
-	res.render('pages/create')
+	res.render('pages/create', {
+        errors: req.flash('errors')
+    })
 }
 
 
 // process the creation form
 const processCreate = (req, res) => {
+    // validate information
+    req.checkBody('name', 'Name is required').notEmpty()
+    req.checkBody('description', 'Description is required').notEmpty()
+
+    // if there are errors, redirect and save errors to flash
+    const errors = req.validationErrors()
+    if(errors) {
+        req.flash('errors', errors.map(err => err.msg))
+        return res.redirect('/events/create')
+    }
 	// create a new event
 	const event = new Event({
 		name: req.body.name,
