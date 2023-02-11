@@ -144,6 +144,16 @@ const processEdit = (req, res) => {
     })
 }
 
+// delete an event
+const deleteEvent = (req, res) => {
+    Event.remove({ slug: req.params.slug }, (err) => {
+        // set flash message
+        req.flash('success', 'Event deleted!')
+        // redirect back to events page
+        res.redirect('/events')
+    })
+}
+
 module.exports = {
     showEvents,
     showSingle,
@@ -151,5 +161,6 @@ module.exports = {
     showCreate,
     processCreate,
     showEdit,
-    processEdit
+    processEdit,
+    deleteEvent
 }
