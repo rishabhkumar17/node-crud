@@ -20,6 +20,10 @@ router.get('/events/seed', eventsController.seedEvents)
 router.get('/events/create', eventsController.showCreate)
 router.post('/events/create', eventsController.processCreate)
 
+// edit events
+router.get('/events/:slug/edit', eventsController.showEdit)
+router.get('/events/:slug', eventsController.processEdit)
+
 
 // show a single event
 router.get('/events/:slug', eventsController.showSingle)

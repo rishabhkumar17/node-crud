@@ -80,11 +80,13 @@ const processCreate = (req, res) => {
         req.flash('errors', errors.map(err => err.msg))
         return res.redirect('/events/create')
     }
+
 	// create a new event
 	const event = new Event({
 		name: req.body.name,
 		description: req.body.description
 	})
+
 	event.save((err) => {
 		if(err) {
 			throw err
@@ -98,10 +100,47 @@ const processCreate = (req, res) => {
 	})
 }
 
+// show the edit form
+const showEdit = (req, res) => {
+    res.redirect('/pages/edit')
+}
+
+// process the edit form
+const processEdit = (req, res) => {
+        // validate information
+    req.checkBody('name', 'Name is required').notEmpty()
+    req.checkBody('description', 'Description is required').notEmpty()
+
+    // if there are errors, redirect and save errors to flash
+    const errors = req.validationErrors()
+    if(errors) {
+        req.flash('errors', errors.map(err => err.msg))
+        return res.redirect(`/events/${req.params.slug}/edit`)
+    }
+
+    // finding a current event
+    Event.findOne({ slug: req.params.slug }, (err, event) => {
+        // updating the event
+        event.name = req.body.name
+        event.description = req.body.description
+
+        event.save((err) => {
+            if(err) throw err
+
+            // success flash message
+            req.flash('success', 'Successfuly updated event.')
+            // redirect back to /events
+            res.redirect('/events')
+        })
+    })
+}
+
 module.exports = {
     showEvents,
     showSingle,
     seedEvents,
     showCreate,
-    processCreate
+    processCreate,
+    showEdit,
+    processEdit
 }
