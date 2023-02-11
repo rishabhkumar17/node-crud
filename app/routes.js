@@ -22,7 +22,7 @@ router.post('/events/create', eventsController.processCreate)
 
 // edit events
 router.get('/events/:slug/edit', eventsController.showEdit)
-router.get('/events/:slug', eventsController.processEdit)
+router.post('/events/:slug', eventsController.processEdit)
 
 
 // show a single event

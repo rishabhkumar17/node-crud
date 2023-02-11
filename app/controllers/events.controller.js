@@ -9,7 +9,10 @@ const showEvents = (req, res) => {
     	}
 
     	//return a view with data
-    	res.render('pages/events', { events: events })
+    	res.render('pages/events', { 
+            events: events,
+            success: req.flash('success') 
+        })
     })
 };
 
@@ -102,7 +105,13 @@ const processCreate = (req, res) => {
 
 // show the edit form
 const showEdit = (req, res) => {
-    res.redirect('/pages/edit')
+    Event.findOne({ slug: req.params.slug }, (err, event) => {
+        res.render('pages/edit', {
+            event: event,
+            errors: req.flash('errors')
+        })
+    })
+    
 }
 
 // process the edit form
